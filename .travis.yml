@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - 2.7
+  - 3.5
 
 services: postgresql
 
@@ -16,17 +16,17 @@ before_install:
 install:
   - sudo $(type -P npm) install -g less
   - sudo $(type -P npm) install -g yuglify
-  - sudo pip install setuptools --upgrade
-  - sudo pip install --upgrade -r requirements.txt
-  - sudo pip install coveralls
+  - sudo pip3 install setuptools --upgrade
+  - sudo pip3 install --upgrade -r requirements.txt
+  - sudo pip3 install coveralls
   
 before_script:
   - psql -c "CREATE DATABASE travisci;" -U postgres
 
 script:
-  - python manage.py migrate
+  - python3 manage.py migrate
   - coverage run --source=rpi_csdt_community manage.py test
 
 after_success:
-  - pip freeze
+  - pip3 freeze
   - echo Uploading code coverage data ...; coveralls
