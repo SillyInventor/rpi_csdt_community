@@ -356,8 +356,8 @@ if ENABLE_GIS:
     try:
         GOOGLE_API_KEY
     except NameError:
-        raise "To use GIS, you need to define a GOOGLE_API_KEY"
+        raise Exception('To use GIS, you need to define a GOOGLE_API_KEY')
     try:
         CENSUS_API_KEY
     except NameError:
-        raise "To use GIS, you need to define a CENSUS API KEY"
+        raise Exception('To use GIS, you need to define a CENSUS API KEY')

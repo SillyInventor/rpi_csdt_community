@@ -1,3 +1,4 @@
+from builtins import object
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -281,7 +282,7 @@ class AddressCreate(CreateView):
         return super(AddressCreate, self).form_valid(form)
 
     def get_success_url(self):
-        return u'/'
+        return '/'
 
 class AddressUpdate(UpdateView):
     model = Address

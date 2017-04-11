@@ -29,7 +29,7 @@ class ApplicationAdmin(admin.ModelAdmin):
         g = git.Git(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
         result = g.execute(["git", "submodule", "foreach", "git", "stash",])
         result = g.execute(["git", "submodule", "foreach", "git", "pull", "origin", "master"])
-        result = g.execute(["python", "manage.py", "collectstatic", "--noinput"])
+        result = g.execute(["python3", "manage.py", "collectstatic", "--noinput"])
     def get_form(self, request, obj=None, **kwargs):
         if obj:
             self.form.base_fields['categories'].initial = obj.categories.all()

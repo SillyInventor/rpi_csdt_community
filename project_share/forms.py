@@ -1,3 +1,4 @@
+from builtins import object
 from django import forms
 from django.forms import ModelForm
 
@@ -10,17 +11,17 @@ class ProjectForm(ModelForm):
         super (ProjectForm,self ).__init__(*args,**kwargs) # populates the post
         self.fields['classroom'].queryset = Team.objects.filter(users=user) # make sure we're only getting the right classrooms
 
-    class Meta:
+    class Meta(object):
         model = Project
         exclude = ('owner', 'approved','application','project','screenshot','parent',)
 		
 class ProjectUnpublishForm(ModelForm):
-    class Meta:
+    class Meta(object):
         model = Project
         exclude = ('owner', 'approved','application','project','screenshot','parent',)
 
 class ApprovalForm(ModelForm):
-    class Meta:
+    class Meta(object):
         model = Approval
         exclude = ('project', 'when_requested', 'when_updated', 'approved_by',)
 		
@@ -41,7 +42,7 @@ class ExtendedSignupForm(forms.Form):
            TeamStatus(team=Team.objects.get(pk=team), role = 1, user = n_user, comment = 'just signed up').save()
 
 class AddressForm(ModelForm):
-    class Meta:
+    class Meta(object):
         model = Address
         exclude = ('teacher',)
 
@@ -51,6 +52,6 @@ class ApplicationAdminForm(ModelForm):
         help_text='Select which categories this application belongs too; think about multiple themes (computing, math, cultural)')
 
 
-    class Meta:
+    class Meta(object):
         model = Application
         exclude = ()

@@ -3,7 +3,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test.client import Client
 from django.conf import settings
 
-from BeautifulSoup import BeautifulSoup, SoupStrainer
+from bs4 import BeautifulSoup, SoupStrainer
 
 try:
     from django.contrib.auth import get_user_model
@@ -43,7 +43,7 @@ class UrlTests(StaticLiveServerTestCase):
 
         self.assertTrue(response.status_code == 200 or response.status_code == 302, msg="Got code %s on %s" % (response.status_code, url))
 
-        for link in BeautifulSoup(response.content, parseOnlyThese=SoupStrainer('a')):
+        for link in BeautifulSoup(response.content, "html5lib").find_all("a"):
             if any('href' in el for el in link.attrs):
                 self.test_all_site_links(link['href'])
 

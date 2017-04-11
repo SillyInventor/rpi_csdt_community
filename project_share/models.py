@@ -1,3 +1,4 @@
+from builtins import object
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
@@ -195,7 +196,7 @@ class Address(models.Model):
     phone = models.CharField(max_length=255)
     teacher = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
 
-    class Meta:
+    class Meta(object):
       verbose_name_plural = "Addresses"
 
 class ApplicationTheme(models.Model):
