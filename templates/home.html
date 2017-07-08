@@ -15,7 +15,7 @@
     {% for app in object_list %}
 
     <a href="{{ app.url }}">
-    <div class="card col-sm-6 col-md-3" style="height: 350px">
+    <div class="card col-sm-6 col-md-3" style="height: 325px">
         <div class="card-block well" style="height: 350px">
             <div class="thumbnail no-underline">{% if app.screenshot %}<img class="img-responsive" style="max-height: 325px" src="{{ app.screenshot.url }}">{% endif %}
             <h3 class="caption">{{ app.name }}</h3>
@@ -51,22 +51,7 @@ $(function() {
     });
 });
 </script>
-<script>
-$(function() {
-    $('.row').each(function() {
-        var intHeight = 0;
-        $(this).find('.card').each(function() {
-            if ($(this).outerHeight() > intHeight) {
-                intHeight = $(this).outerHeight()
-            }
-        });
-        console.log(intHeight);
-        $(this).find('.card').each(function() {
-            $(this).outerHeight(intHeight)
-        });
-    });
-});
-</script>
+
 {% endblock %}
 
 {% block css %}
