@@ -7,13 +7,15 @@
     <div ng-if="category.theme == activeTheme.id" class="category">
         <h3>{{ category.name }}</h3>
         <div ng-repeat="app in category.applications" class="application">
-            <div class="application-thumbnail" style="min-height: 190px;height:auto;">
-                <a href="{{ getApplication(app).url }}" ng-if="getApplication(app).screenshot != null"><img src="{{getApplication(app).screenshot}}" width="100%" height="auto"></a>
+          <a href="{{ getApplication(app).url }}">
+            <div class="application-thumbnail" style="min-height: 230px;height: auto;">
+                 <div ng-if="getApplication(app).screenshot != null"><img src="{{getApplication(app).screenshot}}" width="100%" height="auto"></div>
                 <div class="application-caption">
-                    <h4><a href="{{ getApplication(app).url }}">{{ getApplication(app).name }}</a></h4>
+                    <h4 style="text-align: center">{{ getApplication(app).name }}</h4>
                     <!-- <div class="description">{{ getApplication(app).description }}</div> -->
                 </div>
             </div>
+          </a>
         </div>
     </div>
 </div>
