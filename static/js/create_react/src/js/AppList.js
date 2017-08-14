@@ -32,28 +32,15 @@ export default class AppList extends React.Component {
 
 
 
-    const currentList = categoryList.map((category, i) => {
+    const currentList = (!appList) ? <li>Loading...</li> : categoryList.map((category, i) => {
         if (category.theme === currentThemeNum) {
           console.log('category.applications', category.applications)
 
           const fullArray = category.applications.map((app, i) => {
             if (app != undefined) {
-              if (appList[app]) {
-                const app1 = appList[app]
-                return app1
-                //<li key={app1.id}>App #{app1.name}</li>
-              }else
-              {
-                fetch(`/api/application/${app}`).then(function(response) {
-                  return response.json()
-                }).then(function(json) {
-                  app1 = json
-                  return app1
-                  //<li key={app1.id}>App #{app1.name}</li>
-                }.bind(this)).catch(function(ex) {
-                  console.log('parsing failed', ex)
-                });
-              }
+              const app1 = appList[app]
+              console.log('appList[app] OKAY', app1);
+              return app1
             }
           })
           console.log('fullarray', fullArray);
@@ -82,16 +69,16 @@ export default class AppList extends React.Component {
     console.log('themeList pretest', themeList);
     console.log('currentList', currentList);
     return (
-            <div class="container-fluid">
-              <div class="row">
+            <div className="container-fluid">
+              <div className="row">
                 <h1>Applications</h1>
                 <h2>Theme</h2>
               </div>
-              <div class="row">
+              <div className="row">
                 { themeOutput }
               </div>
 
-              <div class="row">
+              <div className="row">
                   <ul className="categories-ul">{ currentList }</ul>
               </div>
             </div>
